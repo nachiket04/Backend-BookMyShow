@@ -20,8 +20,11 @@ public class TheatreSeat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private String seatNo;
+    @Column(nullable = false)
     private double rate;
+    @Column(nullable = false)
     private SeatType seatType;
 
 

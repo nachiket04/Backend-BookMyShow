@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -20,8 +20,10 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private String name;
-    private Date releaseDate;
+    @Column(nullable = false)
+    private LocalDate releaseDate;
 
     @OneToMany(cascade = CascadeType.ALL)
     List <Show> showList;

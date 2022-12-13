@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -22,10 +24,13 @@ public class Show {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private Date showDate;
-    private Time showTime;
-    private Time createdAt;
-    private Time updatedAt;
+    @Column(nullable = false)
+    private LocalDate showDate;
+    @Column(nullable = false)
+    private LocalTime showTime;
+
+    private Date createdAt;
+    private Date updatedAt;
 
     @OneToMany(cascade = CascadeType.ALL)
     List <Ticket> ticketList;

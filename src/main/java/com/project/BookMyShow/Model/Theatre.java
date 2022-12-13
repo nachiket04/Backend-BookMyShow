@@ -1,6 +1,7 @@
 package com.project.BookMyShow.Model;
 
 import com.project.BookMyShow.Enum.SeatType;
+import com.project.BookMyShow.Enum.TheatreType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,11 +21,16 @@ public class Theatre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private SeatType seatType;
+    @Column(nullable = false)
     private String address;
+    @Column(nullable = false)
     private String city;
 
+    TheatreType theatreType;
 
     @OneToMany
     List <Show> showList;

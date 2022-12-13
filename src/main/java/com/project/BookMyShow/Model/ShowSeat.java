@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Time;
+import java.util.Date;
 
 
 @Entity
@@ -22,11 +22,15 @@ public class ShowSeat {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private double rate;
+    @Column(nullable = false)
     private String seatNo;
+    @Column(nullable = false)
     private SeatType seatType;
+    @Column(nullable = false)
     private boolean booked;
-    private Time bookedAt;
+    private Date bookedAt;
 
     @ManyToOne
     @JoinColumn

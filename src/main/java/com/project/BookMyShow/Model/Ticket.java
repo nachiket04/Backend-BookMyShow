@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -21,8 +22,12 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private String allotedSeat;
+    @Column(nullable = false)
     private double amount;
+    @CreatedDate
+    @Column(nullable = false)
     private Date bookedAt;
 
     @OneToMany
