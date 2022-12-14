@@ -2,10 +2,7 @@ package com.project.BookMyShow.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.BookMyShow.Enum.SeatType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,6 +11,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class TheatreSeat {
 
     @Id

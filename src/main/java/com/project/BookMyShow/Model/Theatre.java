@@ -2,10 +2,7 @@ package com.project.BookMyShow.Model;
 
 import com.project.BookMyShow.Enum.SeatType;
 import com.project.BookMyShow.Enum.TheatreType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,6 +12,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Theatre {
 
     @Id
