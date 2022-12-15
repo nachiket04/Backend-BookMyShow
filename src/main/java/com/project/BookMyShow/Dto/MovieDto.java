@@ -3,6 +3,7 @@ package com.project.BookMyShow.Dto;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -11,7 +12,8 @@ import java.time.LocalDate;
 @Builder
 public class MovieDto {
 
+    private int id;
     private String name;
     private LocalDate releaseDate;
-    ShowDto showDto;
+    List <ShowDto> movies;
 }

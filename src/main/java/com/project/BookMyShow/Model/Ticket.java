@@ -10,6 +10,7 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -23,7 +24,7 @@ public class Ticket {
     private int id;
 
     @Column(nullable = false)
-    private String allotedSeat;
+    private Set<String> allotedSeat;
     @Column(nullable = false)
     private double amount;
     @CreatedDate
