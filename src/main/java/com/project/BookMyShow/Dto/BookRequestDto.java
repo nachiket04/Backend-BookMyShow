@@ -5,10 +5,7 @@ import lombok.*;
 
 import java.util.Set;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Builder
 public class BookRequestDto {
 

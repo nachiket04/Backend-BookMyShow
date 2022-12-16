@@ -6,11 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Builder
 public class TheatreSeat {
 

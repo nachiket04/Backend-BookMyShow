@@ -1,7 +1,7 @@
 package com.project.BookMyShow.Service.Implementation;
 
 import com.project.BookMyShow.Converter.UserConverter;
-import com.project.BookMyShow.Dto.UserDto;
+import com.project.BookMyShow.Dto.ResponseDto.UserDto;
 import com.project.BookMyShow.Model.User;
 import com.project.BookMyShow.Repository.UserRepository;
 import com.project.BookMyShow.Service.UserService;

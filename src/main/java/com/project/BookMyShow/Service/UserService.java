@@ -1,7 +1,6 @@
 package com.project.BookMyShow.Service;
 
-import com.project.BookMyShow.Dto.UserDto;
-import com.project.BookMyShow.Model.User;
+import com.project.BookMyShow.Dto.ResponseDto.UserDto;
 
 public interface UserService {
 

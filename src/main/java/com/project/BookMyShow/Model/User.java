@@ -5,11 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Builder
 public class User {
 
@@ -22,6 +18,6 @@ public class User {
     @Column(nullable = false)
     private String mobNo;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List <Ticket> ticketList;
 }

@@ -1,11 +1,8 @@
-package com.project.BookMyShow.Dto;
+package com.project.BookMyShow.Dto.ResponseDto;
 
 import lombok.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Builder
 public class UserDto {
 

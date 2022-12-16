@@ -1,6 +1,6 @@
 package com.project.BookMyShow.Converter;
 
-import com.project.BookMyShow.Dto.UserDto;
+import com.project.BookMyShow.Dto.ResponseDto.UserDto;
 import com.project.BookMyShow.Model.User;
 import lombok.experimental.UtilityClass;
 

@@ -6,11 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Builder
 public class Movie {
 
@@ -23,6 +19,6 @@ public class Movie {
     @Column(nullable = false)
     private LocalDate releaseDate;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "movie" ,cascade = CascadeType.ALL)
     List <Show> showList;
 }
