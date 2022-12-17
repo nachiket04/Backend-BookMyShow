@@ -7,8 +7,12 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
+@Entity
 public class Theatre {
 
     @Id
@@ -17,7 +21,6 @@ public class Theatre {
 
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
     private SeatType seatType;
     @Column(nullable = false)
     private String address;
@@ -26,9 +29,9 @@ public class Theatre {
 
     TheatreType theatreType;
 
-    @OneToMany
+    @OneToMany(mappedBy = "theatre", cascade = CascadeType.ALL)
     List <Show> showList;
 
-    @OneToMany
+    @OneToMany(mappedBy = "theatre", cascade = CascadeType.ALL)
     List <TheatreSeat> theatreSeats;
 }

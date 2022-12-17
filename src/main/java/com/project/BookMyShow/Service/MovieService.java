@@ -1,10 +1,13 @@
 package com.project.BookMyShow.Service;
 
-import com.project.BookMyShow.Dto.MovieDto;
+import com.project.BookMyShow.Dto.EntryDto.MovieEntryDto;
+import com.project.BookMyShow.Dto.ResponseDto.MovieResponseDto;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface MovieService {
 
-    public MovieDto addMovie(MovieDto movieDto);
+    public MovieResponseDto addMovie(MovieEntryDto movieDto);
 
-    public MovieDto getMovie(int id);
+    public MovieResponseDto getMovie(int id);
 }

@@ -1,7 +1,8 @@
 package com.project.BookMyShow.Service.Implementation;
 
 import com.project.BookMyShow.Converter.TheatreConverter;
-import com.project.BookMyShow.Dto.TheatreDto;
+import com.project.BookMyShow.Dto.EntryDto.TheatreEntryDto;
+import com.project.BookMyShow.Dto.ResponseDto.TheatreResponseDto;
 import com.project.BookMyShow.Enum.SeatType;
 import com.project.BookMyShow.Model.Theatre;
 import com.project.BookMyShow.Model.TheatreSeat;
@@ -15,7 +16,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 @Service
 public class TheatreServiceImpl implements TheatreService {
 
@@ -26,21 +26,21 @@ public class TheatreServiceImpl implements TheatreService {
     TheatreSeatRepository theatreSeatRepository;
 
     @Override
-    public TheatreDto addTheatre(TheatreDto theatreDto) {
+    public TheatreResponseDto addTheatre(TheatreEntryDto theatreDto) {
 
-        List <Theatre> theatres = theatreRepository.findByName(theatreDto.getName());
-        if(theatres.size() > 0){
-            log.info("Already present");
-            return new TheatreDto();
-        }
+//        List <Theatre> theatres = theatreRepository.findByName(theatreDto.getName());
+//        if(theatres.size() > 0){
+//            log.info("Already present");
+//            return null;
+//        }
         Theatre theatre = TheatreConverter.DtoToEntity(theatreDto);
         List <TheatreSeat> seats = createTheatreSeats();
         for(TheatreSeat theatreSeat: seats){
             theatreSeat.setTheatre(theatre);
         }
         theatreRepository.save(theatre);
-        log.info("Successfully added");
-        return theatreDto;
+//        log.info("Successfully added");
+        return TheatreConverter.EntityToDto(theatre);
     }
 
     public List <TheatreSeat> createTheatreSeats(){
@@ -62,7 +62,7 @@ public class TheatreServiceImpl implements TheatreService {
     }
 
     @Override
-    public TheatreDto getTheatre(int id) {
+    public TheatreResponseDto getTheatre(int id) {
         return TheatreConverter.EntityToDto(theatreRepository.findById(id).get());
     }
 }

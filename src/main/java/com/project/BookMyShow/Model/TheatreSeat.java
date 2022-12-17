@@ -8,6 +8,7 @@ import javax.persistence.*;
 
 @Data
 @Builder
+@Entity
 public class TheatreSeat {
 
     @Id

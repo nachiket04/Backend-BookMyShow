@@ -2,15 +2,18 @@ package com.project.BookMyShow.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Builder
+@Entity
+@EntityListeners(value = { AuditingEntityListener.class })
 public class Ticket {
 
     @Id
@@ -18,14 +21,17 @@ public class Ticket {
     private int id;
 
     @Column(nullable = false)
-    private Set<String> allotedSeat;
+    private String allotedSeat;
+
     @Column(nullable = false)
     private double amount;
+
     @CreatedDate
     @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date bookedAt;
 
-    @OneToMany
+    @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL)
     List <ShowSeat> showSeats;
 
     @ManyToOne

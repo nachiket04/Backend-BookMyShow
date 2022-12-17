@@ -32,9 +32,9 @@ public class ShowServiceImpl implements ShowService {
     @Override
     public ShowDto addShow(ShowDto showDto) {
         Show show = ShowConverter.dtoToEntity(showDto);
-        Movie movie = movieRepository.findById(showDto.getMovieDto().getId()).get();
+        Movie movie = movieRepository.findById(showDto.getMovieResponseDto().getId()).get();
         show.setMovie(movie);
-        Theatre theatre = theatreRepository.findById(showDto.getTheatreDto().getId()).get();
+        Theatre theatre = theatreRepository.findById(showDto.getTheatreResponseDto().getId()).get();
         show.setTheatre(theatre);
         List<ShowSeat> showSeats = createShowSeats(theatre.getTheatreSeats());
         show.setShowSeats(showSeats);

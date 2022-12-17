@@ -1,9 +1,12 @@
 package com.project.BookMyShow.Service;
 
-import com.project.BookMyShow.Dto.TheatreDto;
+import com.project.BookMyShow.Dto.EntryDto.TheatreEntryDto;
+import com.project.BookMyShow.Dto.ResponseDto.TheatreResponseDto;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface TheatreService {
-    public TheatreDto addTheatre(TheatreDto theatreDto);
+    public TheatreResponseDto addTheatre(TheatreEntryDto theatreEntryDto);
 
-    public TheatreDto getTheatre(int id);
+    public TheatreResponseDto getTheatre(int id);
 }

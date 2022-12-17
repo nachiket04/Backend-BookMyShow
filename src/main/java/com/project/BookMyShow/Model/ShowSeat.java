@@ -10,6 +10,7 @@ import java.util.Date;
 
 @Data
 @Builder
+@Entity
 public class ShowSeat {
 
     @Id

@@ -1,5 +1,7 @@
 package com.project.BookMyShow.Dto;
 
+import com.project.BookMyShow.Dto.ResponseDto.MovieResponseDto;
+import com.project.BookMyShow.Dto.ResponseDto.TheatreResponseDto;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -12,6 +14,6 @@ public class ShowDto {
     private LocalDate showDate;
     private LocalTime showTime;
 
-    MovieDto movieDto;
-    TheatreDto theatreDto;
+    MovieResponseDto movieResponseDto;
+    TheatreResponseDto theatreResponseDto;
 }

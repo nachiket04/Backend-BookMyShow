@@ -2,6 +2,8 @@ package com.project.BookMyShow.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,6 +13,7 @@ import java.util.List;
 
 @Data
 @Builder
+@Entity
 public class Show {
 
     @Id
@@ -22,13 +25,18 @@ public class Show {
     @Column(nullable = false)
     private LocalTime showTime;
 
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "show", cascade = CascadeType.ALL)
     List <Ticket> ticketList;
 
-    @OneToMany
+    @OneToMany(mappedBy = "show", cascade = CascadeType.ALL)
     List <ShowSeat> showSeats;
 
     @ManyToOne

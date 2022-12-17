@@ -4,7 +4,7 @@ import lombok.*;
 
 @Data
 @Builder
-public class UserDto {
+public class UserResponseDto {
 
     private int id;
     @NonNull

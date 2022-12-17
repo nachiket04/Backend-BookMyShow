@@ -1,18 +1,16 @@
 package com.project.BookMyShow.Dto;
 
-import com.project.BookMyShow.Dto.ResponseDto.UserDto;
+import com.project.BookMyShow.Dto.ResponseDto.UserResponseDto;
 import lombok.*;
-
-import java.util.Set;
 
 @Data
 @Builder
 public class TicketDto {
 
     private int id;
-    private Set <String> allotedSeat;
+    private String allotedSeat;
     private double amount;
 
-    UserDto userDto;
+    UserResponseDto userResponseDto;
     ShowDto showDto;
 }
