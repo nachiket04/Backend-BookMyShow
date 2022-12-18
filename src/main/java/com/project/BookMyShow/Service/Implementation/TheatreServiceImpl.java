@@ -4,6 +4,7 @@ import com.project.BookMyShow.Converter.TheatreConverter;
 import com.project.BookMyShow.Dto.EntryDto.TheatreEntryDto;
 import com.project.BookMyShow.Dto.ResponseDto.TheatreResponseDto;
 import com.project.BookMyShow.Enum.SeatType;
+import com.project.BookMyShow.Enum.TheatreType;
 import com.project.BookMyShow.Model.Theatre;
 import com.project.BookMyShow.Model.TheatreSeat;
 import com.project.BookMyShow.Repository.TheatreRepository;
@@ -27,18 +28,15 @@ public class TheatreServiceImpl implements TheatreService {
 
     @Override
     public TheatreResponseDto addTheatre(TheatreEntryDto theatreDto) {
-
-//        List <Theatre> theatres = theatreRepository.findByName(theatreDto.getName());
-//        if(theatres.size() > 0){
-//            log.info("Already present");
-//            return null;
-//        }
         Theatre theatre = TheatreConverter.DtoToEntity(theatreDto);
+        theatre.setTheatreType(TheatreType.SINGLE);
         List <TheatreSeat> seats = createTheatreSeats();
         for(TheatreSeat theatreSeat: seats){
             theatreSeat.setTheatre(theatre);
+            theatreSeat.setSeatType(SeatType.CLASSIC);
         }
         theatreRepository.save(theatre);
+        theatreSeatRepository.saveAll(seats);
 //        log.info("Successfully added");
         return TheatreConverter.EntityToDto(theatre);
     }
@@ -53,7 +51,8 @@ public class TheatreServiceImpl implements TheatreService {
             String seatNo = "B0" + i;
             seats.add(getTheatreSeat(seatNo, 200, SeatType.PREMIUM));
         }
-        theatreSeatRepository.saveAll(seats);
+        //
+
         return seats;
     }
 

@@ -1,6 +1,5 @@
 package com.project.BookMyShow.Dto.ResponseDto;
 
-import com.project.BookMyShow.Dto.ShowDto;
 import lombok.*;
 
 @Data
@@ -11,5 +10,7 @@ public class TheatreResponseDto {
     private String name;
     private String address;
     private String city;
-    ShowDto showDto;
+
+
+    ShowResponseDto showResponseDto;
 }

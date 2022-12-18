@@ -18,6 +18,9 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public MovieResponseDto addMovie(MovieEntryDto movieDto) {
         Movie movie = MovieConverter.DtoToEntity(movieDto);
+        if(movieRepository.existsByName(movie.getName())){
+            throw new Error("Movie Already Present");
+        }
         movieRepository.save(movie);
         return MovieConverter.EntityToDto(movie);
     }

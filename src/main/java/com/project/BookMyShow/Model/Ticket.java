@@ -10,10 +10,12 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Entity
-@EntityListeners(value = { AuditingEntityListener.class })
 public class Ticket {
 
     @Id

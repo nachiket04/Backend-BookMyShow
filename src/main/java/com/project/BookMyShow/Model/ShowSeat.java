@@ -8,7 +8,10 @@ import javax.persistence.*;
 import java.util.Date;
 
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Entity
 public class ShowSeat {

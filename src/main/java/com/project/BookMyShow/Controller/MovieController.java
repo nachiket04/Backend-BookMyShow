@@ -15,12 +15,12 @@ public class MovieController {
     @Autowired
     MovieServiceImpl movieService;
 
-    @GetMapping("/get_movie/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<MovieResponseDto> getMovie(@PathVariable ("id") int id){
         return new ResponseEntity(movieService.getMovie(id), HttpStatus.FOUND);
     }
 
-    @PostMapping("add_movie")
+    @PostMapping("add")
     public ResponseEntity<String> addMovie(@RequestBody () MovieEntryDto movieEntryDto){
         movieService.addMovie(movieEntryDto);
         return new ResponseEntity("Movie added Successfully..!", HttpStatus.CREATED);

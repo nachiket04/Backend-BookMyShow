@@ -1,10 +1,11 @@
 package com.project.BookMyShow.Service;
 
-import com.project.BookMyShow.Dto.ShowDto;
+import com.project.BookMyShow.Dto.EntryDto.ShowEntryDto;
+import com.project.BookMyShow.Dto.ResponseDto.ShowResponseDto;
 
 public interface ShowService {
 
-    public ShowDto addShow(ShowDto showDto);
+    public ShowResponseDto addShow(ShowEntryDto showEntryDto);
 
-    public ShowDto getShow(int id);
+    public ShowResponseDto getShow(int id);
 }

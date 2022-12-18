@@ -1,7 +1,8 @@
 package com.project.BookMyShow.Service.Implementation;
 
 import com.project.BookMyShow.Converter.ShowConverter;
-import com.project.BookMyShow.Dto.ShowDto;
+import com.project.BookMyShow.Dto.EntryDto.ShowEntryDto;
+import com.project.BookMyShow.Dto.ResponseDto.ShowResponseDto;
 import com.project.BookMyShow.Model.*;
 import com.project.BookMyShow.Repository.MovieRepository;
 import com.project.BookMyShow.Repository.ShowRepository;
@@ -30,30 +31,30 @@ public class ShowServiceImpl implements ShowService {
     TheatreRepository theatreRepository;
 
     @Override
-    public ShowDto addShow(ShowDto showDto) {
-        Show show = ShowConverter.dtoToEntity(showDto);
-        Movie movie = movieRepository.findById(showDto.getMovieResponseDto().getId()).get();
+    public ShowResponseDto addShow(ShowEntryDto showEntryDto) {
+        Show show = ShowConverter.dtoToEntity(showEntryDto);
+        Movie movie = movieRepository.findById(showEntryDto.getMovieResponseDto().getId()).get();
         show.setMovie(movie);
-        Theatre theatre = theatreRepository.findById(showDto.getTheatreResponseDto().getId()).get();
+        Theatre theatre = theatreRepository.findById(showEntryDto.getTheatreResponseDto().getId()).get();
         show.setTheatre(theatre);
         List<ShowSeat> showSeats = createShowSeats(theatre.getTheatreSeats());
         show.setShowSeats(showSeats);
         showRepository.save(show);
-        return showDto;
+        showSeatRepository.saveAll(showSeats);
+        return ShowConverter.EntityToDto(show);
     }
 
     public List <ShowSeat> createShowSeats(List<TheatreSeat> theatreSeats){
         List <ShowSeat> showSeats = new ArrayList<>();
-        for(TheatreSeat seat: theatreSeats){
+        for(TheatreSeat seat: theatreSeats) {
             ShowSeat showSeat = ShowSeat.builder().seatNo(seat.getSeatNo()).seatType(seat.getSeatType()).rate(seat.getRate()).build();
             showSeats.add(showSeat);
         }
-        showSeatRepository.saveAll(showSeats);
         return showSeats;
     }
 
     @Override
-    public ShowDto getShow(int id) {
+    public ShowResponseDto getShow(int id) {
         return ShowConverter.EntityToDto(showRepository.findById(id).get());
     }
 }

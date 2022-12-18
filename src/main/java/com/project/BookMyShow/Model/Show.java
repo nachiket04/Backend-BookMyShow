@@ -11,9 +11,13 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Entity
+@Table(name = "shows")
 public class Show {
 
     @Id
@@ -22,6 +26,7 @@ public class Show {
 
     @Column(nullable = false)
     private LocalDate showDate;
+
     @Column(nullable = false)
     private LocalTime showTime;
 

@@ -64,11 +64,14 @@ public class TicketServiceImpl implements TicketService {
 
             amount += seat.getRate();
         }
-
+        ticket.setBookedAt(new Date());
         ticket.setAmount(amount);
         ticket.setAllotedSeat(convertListOfSeatsEntityToString(allotedSeats));
-        ticketRepository.save(ticket);
 
+        show.getTicketList().add(ticket);
+        user.getTicketList().add(ticket);
+
+        ticket = ticketRepository.save(ticket);
         return TicketConverter.EntityToDto(ticket);
     }
     public String convertListOfSeatsEntityToString(List<ShowSeat> bookedSeats){

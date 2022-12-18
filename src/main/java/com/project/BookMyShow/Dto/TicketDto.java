@@ -1,5 +1,6 @@
 package com.project.BookMyShow.Dto;
 
+import com.project.BookMyShow.Dto.ResponseDto.ShowResponseDto;
 import com.project.BookMyShow.Dto.ResponseDto.UserResponseDto;
 import lombok.*;
 
@@ -11,6 +12,7 @@ public class TicketDto {
     private String allotedSeat;
     private double amount;
 
+    @NonNull
     UserResponseDto userResponseDto;
-    ShowDto showDto;
+    ShowResponseDto showResponseDto;
 }
