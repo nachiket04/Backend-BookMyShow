@@ -2,6 +2,7 @@ package com.project.BookMyShow.Dto;
 
 import com.project.BookMyShow.Dto.ResponseDto.ShowResponseDto;
 import com.project.BookMyShow.Dto.ResponseDto.UserResponseDto;
+import com.sun.istack.NotNull;
 import lombok.*;
 
 @Data
@@ -12,7 +13,7 @@ public class TicketDto {
     private String allotedSeat;
     private double amount;
 
-    @NonNull
     UserResponseDto userResponseDto;
+
     ShowResponseDto showResponseDto;
 }

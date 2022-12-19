@@ -22,8 +22,8 @@ public class TicketController {
     }
 
     @PostMapping("/book")
-    public ResponseEntity<String> bookTicket(BookRequestDto bookRequestDto){
+    public ResponseEntity<String> bookTicket(@RequestBody () BookRequestDto bookRequestDto) throws Exception {
         ticketService.bookTicket(bookRequestDto);
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity("Ticket Booked Successfully..!", HttpStatus.CREATED);
     }
 }

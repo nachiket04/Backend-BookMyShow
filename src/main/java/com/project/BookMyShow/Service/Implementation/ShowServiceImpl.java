@@ -37,19 +37,22 @@ public class ShowServiceImpl implements ShowService {
         show.setMovie(movie);
         Theatre theatre = theatreRepository.findById(showEntryDto.getTheatreResponseDto().getId()).get();
         show.setTheatre(theatre);
-        List<ShowSeat> showSeats = createShowSeats(theatre.getTheatreSeats());
-        show.setShowSeats(showSeats);
-        showRepository.save(show);
+        show = showRepository.save(show);
+        List<ShowSeat> showSeats = createShowSeats(theatre.getTheatreSeats(), show);
         showSeatRepository.saveAll(showSeats);
         return ShowConverter.EntityToDto(show);
     }
 
-    public List <ShowSeat> createShowSeats(List<TheatreSeat> theatreSeats){
+    public List <ShowSeat> createShowSeats(List<TheatreSeat> theatreSeats, Show show){
         List <ShowSeat> showSeats = new ArrayList<>();
         for(TheatreSeat seat: theatreSeats) {
             ShowSeat showSeat = ShowSeat.builder().seatNo(seat.getSeatNo()).seatType(seat.getSeatType()).rate(seat.getRate()).build();
             showSeats.add(showSeat);
         }
+        for(ShowSeat seat: showSeats){
+            seat.setShow(show);
+        }
+
         return showSeats;
     }
 

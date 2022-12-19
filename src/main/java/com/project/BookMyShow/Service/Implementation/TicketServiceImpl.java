@@ -35,44 +35,49 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public TicketDto bookTicket(BookRequestDto bookRequestDto) {
+    public TicketDto bookTicket(BookRequestDto bookRequestDto) throws Exception {
         User user = userRepository.findById(bookRequestDto.getUserId()).get();
         Show show = showRepository.findById(bookRequestDto.getShowId()).get();
 
         SeatType seatType = bookRequestDto.getSeatType();
         Set <String> requestedSeats = bookRequestDto.getRequestedSeats();
+//        System.out.println(new ArrayList<>(requestedSeats));
         List<ShowSeat> availableSeats = show.getShowSeats();
+//        System.out.println(availableSeats);
 
         List <ShowSeat> allotedSeats = new ArrayList<>();
         // checking if all the seats are available or not
         for(ShowSeat seat: availableSeats){
+            System.out.println(seat.getSeatNo() +" "+ seat.isBooked());
             if(!seat.isBooked() && seat.getSeatType().equals(bookRequestDto.getSeatType()) && requestedSeats.contains(seat.getSeatNo())){
                 allotedSeats.add(seat);
             }
         }
-        if(requestedSeats.size() != allotedSeats.size()){
-            throw new Error("Seats are not available");
+//        System.out.println(allotedSeats);
+
+        if(requestedSeats.size() == allotedSeats.size()){
+            Ticket ticket = Ticket.builder().user(user).show(show).showSeats(allotedSeats).build();
+
+            double amount = 0;
+            for(ShowSeat seat: allotedSeats){
+                seat.setBooked(true);
+                seat.setTicket(ticket);
+                seat.setBookedAt(new Date());
+
+                amount += seat.getRate();
+            }
+            ticket.setBookedAt(new Date());
+            ticket.setAmount(amount);
+            ticket.setAllotedSeat(convertListOfSeatsEntityToString(allotedSeats));
+
+            show.getTicketList().add(ticket);
+            user.getTicketList().add(ticket);
+
+            ticket = ticketRepository.save(ticket);
+
+            return TicketConverter.EntityToDto(ticket);
         }
-
-        Ticket ticket = Ticket.builder().user(user).show(show).showSeats(allotedSeats).build();
-
-        double amount = 0;
-        for(ShowSeat seat: allotedSeats){
-            seat.setBooked(true);
-            seat.setTicket(ticket);
-            seat.setBookedAt(new Date());
-
-            amount += seat.getRate();
-        }
-        ticket.setBookedAt(new Date());
-        ticket.setAmount(amount);
-        ticket.setAllotedSeat(convertListOfSeatsEntityToString(allotedSeats));
-
-        show.getTicketList().add(ticket);
-        user.getTicketList().add(ticket);
-
-        ticket = ticketRepository.save(ticket);
-        return TicketConverter.EntityToDto(ticket);
+        throw new Exception("Seats are not available..!");
     }
     public String convertListOfSeatsEntityToString(List<ShowSeat> bookedSeats){
 

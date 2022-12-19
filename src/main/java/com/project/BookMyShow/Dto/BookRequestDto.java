@@ -9,8 +9,11 @@ import java.util.Set;
 @Builder
 public class BookRequestDto {
 
+    @NonNull
     private int userId;
+    @NonNull
     private int showId;
+
     Set<String> requestedSeats;
     private SeatType seatType;
 }

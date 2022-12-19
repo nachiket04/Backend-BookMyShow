@@ -31,9 +31,11 @@ public class TheatreServiceImpl implements TheatreService {
         Theatre theatre = TheatreConverter.DtoToEntity(theatreDto);
         theatre.setTheatreType(TheatreType.SINGLE);
         List <TheatreSeat> seats = createTheatreSeats();
+        theatre.setTheatreSeats(seats);
+        theatre.setShowList(null);
+
         for(TheatreSeat theatreSeat: seats){
             theatreSeat.setTheatre(theatre);
-            theatreSeat.setSeatType(SeatType.CLASSIC);
         }
         theatreRepository.save(theatre);
         theatreSeatRepository.saveAll(seats);
@@ -51,8 +53,6 @@ public class TheatreServiceImpl implements TheatreService {
             String seatNo = "B0" + i;
             seats.add(getTheatreSeat(seatNo, 200, SeatType.PREMIUM));
         }
-        //
-
         return seats;
     }
 

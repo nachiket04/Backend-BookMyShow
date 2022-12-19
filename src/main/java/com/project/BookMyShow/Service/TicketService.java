@@ -7,5 +7,5 @@ public interface TicketService {
 
     public TicketDto getTicket(int id);
 
-    public TicketDto bookTicket(BookRequestDto bookRequestDto);
+    public TicketDto bookTicket(BookRequestDto bookRequestDto) throws Exception;
 }
